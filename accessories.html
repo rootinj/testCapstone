@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessories</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            background-image: url('default_background.jpg'); /* Default background image */
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.5s;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 0.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 1rem;
+            padding: 0.5rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ff6600;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        .product {
+            display: flex;
+            margin-bottom: 2rem;
+        }
+
+        .product img {
+            width: 200px;
+            height: 200px;
+            margin-right: 1rem;
+        }
+
+        .product-info {
+            flex-grow: 1;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Accessories</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#women">Women</a></li>
+            <li><a href="#men">Men</a></li>
+            <li><a href="#kids">Kids</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="women">
+            <h2>Women's Accessories</h2>
+            <div class="product">
+                <img src="women_accessory.jpg" alt="Women's accessory">
+                <div class="product-info">
+                    <h3>Elegant Scarf</h3>
+                    <p>Stay warm and stylish with this elegant scarf. Made from high-quality fabric, it's perfect for any occasion.</p>
+                    <p>Price: ₹1299</p>
+                    <button onclick="addToCart('Elegant Scarf', 1299)">Add to Cart</button>
+                </div>
+            </div>
+            <!-- Add more women's accessories here -->
+        </section>
+        <section id="men">
+            <h2>Men's Accessories</h2>
+            <div class="product">
+                <img src="men_accessory.jpg" alt="Men's accessory">
+                <div class="product-info">
+                    <h3>Classic Leather Belt</h3>
+                    <p>Add a touch of sophistication to your outfit with this classic leather belt. Durable and stylish, it's a must-have accessory.</p>
+                    <p>Price: ₹2199</p>
+                    <button onclick="addToCart('Classic Leather Belt', 2199)">Add to Cart</button>
+                </div>
+            </div>
+            <!-- Add more men's accessories here -->
+        </section>
+        <section id="kids">
+            <h2>Kids' Accessories</h2>
+            <div class="product">
+                <img src="kids_accessory.jpg" alt="Kids' accessory">
+                <div class="product-info">
+                    <h3>Cute Hair Clips</h3>
+                    <p>Keep your little one looking adorable with these cute hair clips. Perfect for adding a playful touch to any hairstyle.</p>
+                    <p>Price: ₹899</p>
+                    <button onclick="addToCart('Cute Hair Clips', 899)">Add to Cart</button>
+                </

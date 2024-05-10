@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clothing Store</title>
+  <style>
+    /* Your CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    /* Container for the whole page */
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style the tab layout */
+    .tab {
+      overflow: hidden;
+      border-radius: 10px;
+      background-color: #333;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    /* Style the buttons inside the tab */
+    .tab button {
+      background-color: #007bff;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 16px;
+      color: #fff;
+      border-radius: 10px;
+      margin: 10px;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+      background-color: #fff;
+      color: #333;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+      display: none;
+      padding: 20px;
+      border-top: 2px solid #ccc;
+      animation: fadeEffect 1s;
+      border-radius: 0 0 10px 10px;
+    }
+
+    @keyframes fadeEffect {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Style for cloth details */
+    .cloth-details {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 2px solid #ccc;
+      transition: transform 0.3s ease-in-out;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+    }
+
+    .cloth-details:hover {
+      transform: scale(1.05);
+    }
+
+    /* Style for brand name */
+    .brand-name {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    /* Style for cloth description */
+    .cloth-description {
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    /* Style for cloth image */
+    .cloth-image {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 10px;
+      border-radius: 10px;
+    }
+
+    /* Style for add to cart button */
+    .add-to-cart {
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      outline: none;
+    }
+
+    .add-to-cart:hover {
+      background-color: #218838;
+    }
+
+    /* Size select dropdown */
+    .size-select {
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    /* Toast message style */
+    .toast {
+      visibility: hidden;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 5px;
+      padding: 10px;
+      position: fixed;
+      z-index: 1;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: slideIn 0.5s, slideOut 0.5s 2.5s;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(-50%) translateY(100%); }
+      to { transform: translateX(-50%) translateY(0); }
+    }
+
+    @keyframes slideOut {
+      from { transform: translateX(-50%) translateY(0); }
+      to { transform: translateX(-50%) translateY(100%); }
+    }
+
+    /* Home and cart button styles */
+    .home-button, .cart-button {
+      display: inline-block;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-bottom: 10px;
+    }
+
+    .home-button:hover, .cart-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Women')">Women</button>
+    <button class="tablinks" onclick="openTab(event, 'Men')">Men</button>
+    <button class="tablinks" onclick="openTab(event, 'Kids')">Kids</button>
+    <button class="tablinks" onclick="openTab(event, 'Accessories')">Accessories</button>
+  </div>
+
+  <!-- Women Tab Content -->
+  <div id="Women" class="tabcontent">
+    <h2>Women's Collection</h2>
+    <p>Welcome to our women's clothing section. Explore our vibrant collection below:</p>
+    <!-- Placeholder content for women's collection -->
+    <div class="cloth-details">
+      <div class="brand-name">Nike</div>
+      <img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/e11876d2-cf44-4fbc-b862-6ae0d4c3ce95/sportswear-essential-woven-high-waisted-shorts-9rg0R7.png" alt="Nike Clothing" class="cloth-image">
+      <div class="cloth-description">Stay active and stylish with our Nike Dri-FIT running shorts. Made with breathable fabric for maximum comfort during workouts.</div>
+      <div>Price: Rs. 800</div>
+      <label for="sizeNike">Select Size:</label>
+      <select id="sizeNike" class="size-select">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Nike Dri-FIT Running Shorts')">Add to Cart</button>
+    </div>
+    <!-- More clothing items can be added here -->
+    <div class="cloth-details">
+      <div class="brand-name">Adidas</div>
+      <img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/824ebcf9a1924ff3ad6baef600920e2a_9366/Run_It_Shorts_Black_HM4291_23_hover_model.jpg" alt="Adidas Clothing" class="cloth-image">
+      <div class="cloth-description">Hit the gym with confidence in our Adidas Ultimate365 golf polo. Designed for optimal performance and style on the course.</div>
+      <div>Price: Rs. 1500</div>
+      <label for="sizeAdidas">Select Size:</label>
+      <select id="sizeAdidas" class="size-select">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Adidas Ultimate365 Golf Polo')">Add to Cart</button>
+    </div>
+    <div class="cloth-details">
+      <div class="brand-name">Under Armour</div>
+      <img src="data:image/jpeg;base64,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" alt="Under Armour Clothing" class="cloth-image">
+      <div class="cloth-description">Conquer your workout in our Under Armour HeatGear leggings. Featuring sweat-wicking technology and a supportive fit.</div>
+      <div>Price: Rs. 2000</div>
+      <label for="sizeUA">Select Size:</label>
+      <select id="sizeUA" class="size-select">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Under Armour HeatGear Leggings')">Add to Cart</button>
+    </div>
+    <div class="cloth-details">
+      <div class="brand-name">Puma</div>
+      <img src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/586774/01/mod01/fnd/AUS/fmt/png/Essentials-Logo-Regular-Fit-Women's--T-shirt" alt="Puma Clothing" class="cloth-image">
+      <div class="cloth-description">Look stylish and sporty in our Puma Studio Luxe tank top. Made with lightweight, breathable fabric for all-day comfort.</div>
+      <div>Price: Rs. 1200</div>
+      <label for="sizePuma">Select Size:</label>
+      <select id="sizePuma" class="size-select">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Puma Studio Luxe Tank Top')">Add to Cart</button>
+    </div>
+    <div class="cloth-details">
+      <div class="brand-name">Gap</div>
+      <img src="https://via.placeholder.com/150" alt="Gap Clothing" class="cloth-image">
+      <div class="cloth-description">Stay cozy and chic in our Gap Cozy Ribbed Crewneck Sweater. Perfect for layering on chilly days.</div>
+      <div>Price: Rs. 1800</div>
+      <label for="sizeGap">Select Size:</label>
+      <select id="sizeGap" class="size-select">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Gap Cozy Ribbed Crewneck Sweater')">Add to Cart</button>
+    </div>
+    <div class="cloth-details">
+      <div class="brand-name">Levi's</div>
+      <img src="https://via.placeholder.com/150" alt="Levi's Clothing" class="cloth-image">
+      <div class="cloth-description">Achieve effortless style in our Levi's 501 Original Fit Jeans. Classic and versatile, they're a wardrobe essential.</div>
+      <div>Price: Rs. 2500</div>
+      <label for="sizeLevis">Select Size:</label>
+      <select id="sizeLevis" class="size-select">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Levi\'s 501 Original Fit Jeans')">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Men Tab Content -->
+  <div id="Men" class="tabcontent">
+    <h2>Men's Collection</h2>
+    <p>Welcome to our men's clothing section. Explore our stylish collection below:</p>
+    <!-- Placeholder content for men's collection -->
+    <div class="cloth-details">
+      <div class="brand-name">Tommy Hilfiger</div>
+      <img src="https://via.placeholder.com/150" alt="Tommy Hilfiger Clothing" class="cloth-image">
+      <div class="cloth-description">Elevate your casual look with our Tommy Hilfiger logo t-shirt. Made with soft cotton for all-day comfort.</div>
+      <div>Price: Rs. 900</div>
+      <label for="sizeTommy">Select Size:</label>
+      <select id="sizeTommy" class="size-select">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Tommy Hilfiger Logo T-Shirt')">Add to Cart</button>
+    </div>
+    <!-- More clothing items can be added here -->
+    <div class="cloth-details">
+      <div class="brand-name">Calvin Klein</div>
+      <img src="https://via.placeholder.com/150" alt="Calvin Klein Clothing" class="cloth-image">
+      <div class="cloth-description">Make a statement with our Calvin Klein slim-fit dress shirt. Perfect for formal occasions or a polished office look.</div>
+      <div>Price: Rs. 1800</div>
+      <label for="sizeCalvin">Select Size:</label>
+      <select id="sizeCalvin" class="size-select">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Calvin Klein Slim-Fit Dress Shirt')">Add to Cart</button>
+    </div>
+    <div class="cloth-details">
+      <div class="brand-name">Ralph Lauren</div>
+      <img src="https://via.placeholder.com/150" alt="Ralph Lauren Clothing" class="cloth-image">
+      <div class="cloth-description">Achieve a classic, preppy look with our Ralph Lauren polo shirt. Made with premium cotton for superior comfort and style.</div>
+      <div>Price: Rs. 1600</div>
+      <label for="sizeRalph">Select Size:</label>
+      <select id="sizeRalph" class="size-select">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Ralph Lauren Polo Shirt')">Add to Cart</button>
+    </div>
+    <div class="cloth-details">
+      <div class="brand-name">Hugo Boss</div>
+      <img src="https://via.placeholder.com/150" alt="Hugo Boss Clothing" class="cloth-image">
+      <div class="cloth-description">Dress to impress in our Hugo Boss slim-fit suit. Tailored for a modern, sophisticated look.</div>
+      <div>Price: Rs. 4500</div>
+      <label for="sizeHugo">Select Size:</label>
+      <select id="sizeHugo" class="size-select">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Hugo Boss Slim-Fit Suit')">Add to Cart</button>
+    </div>
+    <div class="cloth-details">
+      <div class="brand-name">Versace</div>
+      <img src="https://via.placeholder.com/150" alt="Versace Clothing" class="cloth-image">
+      <div class="cloth-description">Make a bold statement with our Versace Medusa logo t-shirt. Crafted from premium cotton for luxurious comfort.</div>
+      <div>Price: Rs. 3000</div>
+      <label for="sizeVersace">Select Size:</label>
+      <select id="sizeVersace" class="size-select">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Versace Medusa Logo T-Shirt')">Add to Cart</button>
+    </div>
+    <div class="cloth-details">
+      <div class="brand-name">Dockers</div>
+      <img src="https://via.placeholder.com/150" alt="Dockers Clothing" class="cloth-image">
+      <div class="cloth-description">Look sharp and polished in our Dockers Classic Fit Khaki Pants. Perfect for work or weekend wear.</div>
+      <div>Price: Rs. 1200</div>
+      <label for="sizeDockers">Select Size:</label>
+      <select id="sizeDockers" class="size-select">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Dockers Classic Fit Khaki Pants')">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Kids Tab Content -->
+  <div id="Kids" class="tabcontent">
+    <h2>Kids' Collection</h2>
+    <p>Discover trendy and comfortable clothing for your little ones:</p>
+    <!-- Placeholder content for kids' collection -->
+    <div class="cloth-details">
+      <div class="brand-name">Carter's</div>
+      <img src="https://via.placeholder.com/150" alt="Carter's Clothing" class="cloth-image">
+      <div class="cloth-description">Keep your baby cozy and cute in our Carter's 3-piece Bodysuit Set. Perfect for everyday wear.</div>
+      <div>Price: Rs. 600</div>
+      <label for="sizeCarter">Select Size:</label>
+      <select id="sizeCarter" class="size-select">
+        <option value="0-3M">0-3M</option>
+        <option value="3-6M">3-6M</option>
+        <option value="6-9M">6-9M</option>
+        <option value="9-12M">9-12M</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Carter\'s 3-piece Bodysuit Set')">Add to Cart</button>
+    </div>
+    <!-- More clothing items can be added here -->
+    <div class="cloth-details">
+      <div class="brand-name">Gap Kids</div>
+      <img src="https://via.placeholder.com/150" alt="Gap Kids Clothing" class="cloth-image">
+      <div class="cloth-description">Let your child play in style with our Gap Kids Logo Hoodie. Made with soft, cozy fabric for all-day comfort.</div>
+      <div>Price: Rs. 800</div>
+      <label for="sizeGapKids">Select Size:</label>
+      <select id="sizeGapKids" class="size-select">
+        <option value="2T">2T</option>
+        <option value="3T">3T</option>
+        <option value="4T">4T</option>
+        <option value="5T">5T</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Gap Kids Logo Hoodie')">Add to Cart</button>
+    </div>
+    <div class="cloth-details">
+      <div class="brand-name">OshKosh B'gosh</div>
+      <img src="https://via.placeholder.com/150" alt="OshKosh B'gosh Clothing" class="cloth-image">
+      <div class="cloth-description">Dress your little one in our OshKosh B'gosh Denim Overalls for a cute and playful look. Made with durable denim for long-lasting wear.</div>
+      <div>Price: Rs. 1000</div>
+      <label for="sizeOshKosh">Select Size:</label>
+      <select id="sizeOshKosh" class="size-select">
+        <option value="2T">2T</option>
+        <option value="3T">3T</option>
+        <option value="4T">4T</option>
+        <option value="5T">5T</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('OshKosh B\'gosh Denim Overalls')">Add to Cart</button>
+    </div>
+    <div class="cloth-details">
+      <div class="brand-name">The Children's Place</div>
+      <img src="https://via.placeholder.com/150" alt="The Children's Place Clothing" class="cloth-image">
+      <div class="cloth-description">Get your little girl ready for any occasion with our The Children's Place Floral Dress. Featuring a vibrant floral print and comfortable fit.</div>
+      <div>Price: Rs. 900</div>
+      <label for="sizeChildrens">Select Size:</label>
+      <select id="sizeChildrens" class="size-select">
+        <option value="2T">2T</option>
+        <option value="3T">3T</option>
+        <option value="4T">4T</option>
+        <option value="5T">5T</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('The Children\'s Place Floral Dress')">Add to Cart</button>
+    </div>
+    <div class="cloth-details">
+      <div class="brand-name">Old Navy</div>
+      <img src="https://via.placeholder.com/150" alt="Old Navy Clothing" class="cloth-image">
+      <div class="cloth-description">Keep your little boy comfy and stylish in our Old Navy Pull-On Joggers. Perfect for playtime or lounging at home.</div>
+      <div>Price: Rs. 700</div>
+      <label for="sizeOldNavy">Select Size:</label>
+      <select id="sizeOldNavy" class="size-select">
+        <option value="2T">2T</option>
+        <option value="3T">3T</option>
+        <option value="4T">4T</option>
+        <option value="5T">5T</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Old Navy Pull-On Joggers')">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Accessories Tab Content -->
+  <div id="Accessories" class="tabcontent">
+    <h2>Accessories Collection</h2>
+    <p>Complete your look with our stylish accessories:</p>
+    <!-- Placeholder content for accessories collection -->
+    <div class="cloth-details">
+      <div class="brand-name">Ray-Ban</div>
+      <img src="https://via.placeholder.com/150" alt="Ray-Ban Sunglasses" class="cloth-image">
+      <div class="cloth-description">Add a touch of sophistication to your outfit with our Ray-Ban Aviator Sunglasses. Featuring classic styling and UV protection.</div>
+      <div>Price: Rs. 2000</div>
+      <label for="sizeRayBan">Select Size:</label>
+      <select id="sizeRayBan" class="size-select">
+        <option value="One Size">One Size</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Ray-Ban Aviator Sunglasses')">Add to Cart</button>
+    </div>
+    <!-- More accessory items can be added here -->
+    <div class="cloth-details">
+      <div class="brand-name">Fossil</div>
+      <img src="https://via.placeholder.com/150" alt="Fossil Watch" class="cloth-image">
+      <div class="cloth-description">Stay on time and on trend with our Fossil Chronograph Watch. Featuring a sleek design and reliable functionality.</div>
+      <div>Price: Rs. 3000</div>
+      <label for="sizeFossil">Select Size:</label>
+      <select id="sizeFossil" class="size-select">
+        <option value="One Size">One Size</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Fossil Chronograph Watch')">Add to Cart</button>
+    </div>
+    <div class="cloth-details">
+      <div class="brand-name">Coach</div>
+      <img src="https://via.placeholder.com/150" alt="Coach Handbag" class="cloth-image">
+      <div class="cloth-description">Complete your look with our Coach Signature Tote. Made with premium materials and featuring a timeless design.</div>
+      <div>Price: Rs. 4000</div>
+      <label for="sizeCoach">Select Size:</label>
+      <select id="sizeCoach" class="size-select">
+        <option value="One Size">One Size</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Coach Signature Tote')">Add to Cart</button>
+    </div>
+    <div class="cloth-details">
+      <div class="brand-name">Apple</div>
+      <img src="https://via.placeholder.com/150" alt="Apple AirPods" class="cloth-image">
+      <div class="cloth-description">Experience wireless freedom with our Apple AirPods. Designed for seamless connectivity and high-quality sound.</div>
+      <div>Price: Rs. 10000</div>
+      <label for="sizeApple">Select Size:</label>
+      <select id="sizeApple" class="size-select">
+        <option value="One Size">One Size</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Apple AirPods')">Add to Cart</button>
+    </div>
+    <div class="cloth-details">
+      <div class="brand-name">Fitbit</div>
+      <img src="https://via.placeholder.com/150" alt="Fitbit Fitness Tracker" class="cloth-image">
+      <div class="cloth-description">Track your fitness goals with our Fitbit Charge 4. Featuring built-in GPS and heart rate monitoring for accurate tracking.</div>
+      <div>Price: Rs. 5000</div>
+      <label for="sizeFitbit">Select Size:</label>
+      <select id="sizeFitbit" class="size-select">
+        <option value="One Size">One Size</option>
+      </select>
+      <button class="add-to-cart" onclick="addToCart('Fitbit Charge 4')">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Toast message for cart -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Home button -->
+  <button class="home-button" onclick="goToHomePage()">Home</button>
+</div>
+
+<script>
+  // Open default tab
+  document.getElementById("defaultOpen").click();
+
+  // Function to open tab content
+  function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+
+  // Function to add product to cart
+  function addToCart(product) {
+    var cartCount = parseInt(localStorage.getItem('cartCount')) || 0;
+    localStorage.setItem('cartCount', cartCount + 1);
+    document.getElementById('toast').innerText = product + ' added to cart';
+    document.getElementById('toast').style.visibility = 'visible';
+    setTimeout(function() {
+      document.getElementById('toast').style.visibility = 'hidden';
+    }, 2500);
+  }
+
+  // Function to navigate to home page
+  function goToHomePage() {
+    window.location.href = "index.html";
+  }
+</script>
+
+</body>
+</html>
