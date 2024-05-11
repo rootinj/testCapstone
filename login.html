@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <title>Login page</title>
     <style>
         /* Add some space below the password input */
@@ -39,7 +40,7 @@
 </head>
 
 <body>
-
+    
     <h1 id="top-heading">CLOTHIFY</h1>
 
     <div class="container" id="container">
@@ -70,8 +71,30 @@
                 </div>
                 <span>or use your email password</span>
                 <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password" style="margin-bottom: 10px;">
-                <div class="signin">
+                <div class="">
+                    <h2>OTP Authentication</h2>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input type="tel" id="phoneNumber" placeholder="Enter your phone number">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" id="generateOTP">Get OTP</button>
+                        </div>
+                        <div class="form-group">
+                            <label for="otp" class="otp">Enter OTP</label>
+                            <input type="text" id="otp" placeholder="Enter OTP">
+                        </div>
+                        <div class="form-group">
+                            <a href="/index.html">
+
+                                <button type="button" id="submitOTP" >Submit</button>
+                            </a>
+                        </div>
+                    </form>
+                    <p id="status"></p>
+                </div>
+                            <div class="signin">
                     <a href="index.html" style="animation: fadeBlack 2s infinite alternate; background-color: #808080; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Sign In</a>
                 </div> <!-- Link to index.html -->
                 <a href="https://support.google.com/accounts/answer/41078?hl=en&co=GENIE.Platform%3DAndroid">Forget Your Password?</a>
@@ -94,6 +117,37 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        document.getElementById("generateOTP").addEventListener("click", function() {
+            var phoneNumber = document.getElementById("phoneNumber").value;
+            if (phoneNumber.trim() === "") {
+                alert("Please enter your phone number.");
+                return;
+            }
+            var otp = generateOTP();
+            alert("OTP: " + otp); // Simulating OTP sending
+        });
+
+        document.getElementById("submitOTP").addEventListener("click", function() {
+            var enteredOTP = document.getElementById("otp").value;
+            var generatedOTP = localStorage.getItem("otp");
+            if (enteredOTP === generatedOTP) {
+                document.getElementById("status").innerText = "OTP Verified. You are logged in!";
+            } else {
+                document.getElementById("status").innerText = "Invalid OTP. Please try again.";
+            }
+        });
+
+        function generateOTP() {
+            var digits = '0123456789';
+            var OTP = '';
+            for (let i = 0; i < 6; i++) {
+                OTP += digits[Math.floor(Math.random() * 10)];
+            }
+            localStorage.setItem("otp", OTP);
+            return OTP;
+        }
+    </script>
 </body>
 
 </html>

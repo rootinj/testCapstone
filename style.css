@@ -221,3 +221,7 @@ body{
 .container.active .toggle-right{
     transform: translateX(200%);
 }
+
+.otp{
+    font-size: 13px;
+}
